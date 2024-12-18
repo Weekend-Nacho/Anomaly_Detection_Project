@@ -29,6 +29,18 @@ def predict_anomaly(input_data):
 # Train the model during initialization
 train_model()
 
+@app.route('/', methods=['GET'])
+def home():
+    """
+    Root route to provide basic information about the API.
+    """
+    return (
+        "<h1>Welcome to the Anomaly Detection API</h1>"
+        "<p>Use the <code>/predict</code> endpoint to detect anomalies.</p>"
+        "<p>Example request:</p>"
+        "<pre>{\"Temperature_C\": 72.5, \"Humidity_%\": 40, \"Sound_Volume_dB\": 62, \"Vibration_mm_s\": 5.3}</pre>"
+    )
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
@@ -47,4 +59,3 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
